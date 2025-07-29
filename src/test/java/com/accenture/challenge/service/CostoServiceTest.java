@@ -19,11 +19,11 @@ import com.accenture.challenge.service.impl.CostoServiceImpl;
 @ExtendWith(MockitoExtension.class)
 public class CostoServiceTest {
 
-	@Mock
-	private CostoService service;
 
 	@Mock
 	private CalculoMejorCaminoStrategy calculoMejorCaminoStrategy;
+	
+	private CostoService service;
 
 	@BeforeEach
 	public void setUp() {
@@ -48,7 +48,7 @@ public class CostoServiceTest {
 
 	@Test
 	public void testCaminoMinimoSimple() {
-		var result = service.buscarMejorCamino(1, 5);
+		var result = service.buscarMejorCamino(1, 2);
 		assertNotNull(result);
 		assertEquals(16, result.costoTotal);
 		assertEquals(List.of(1, 2, 5), result.camino);

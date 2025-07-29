@@ -1,7 +1,6 @@
 package com.accenture.challenge.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.challenge.dto.PuntoVenta;
-import com.accenture.challenge.dto.PuntoVentaDTO;
-import com.accenture.challenge.mapper.PuntoVentaMapper;
 import com.accenture.challenge.service.PuntoVentaService;
 
 @RestController
@@ -25,25 +22,14 @@ public class PuntoVentaController {
     @Autowired
     private PuntoVentaService service;
     
-    @Autowired
-    private PuntoVentaMapper mapper;
-    
-    public PuntoVentaController(PuntoVentaService service, PuntoVentaMapper mapper) {
-    	this.service=service;
-    	this.mapper=mapper;
-    }
-
     @GetMapping
-    public List<PuntoVentaDTO> getAll() {
-    	return service.getAll().stream()
-                .map(mapper::toDTO)
-                .collect(Collectors.toList());
+    public List<PuntoVenta> getAll() {
+        return service.getAll();
     }
 
     @PostMapping
-    public PuntoVentaDTO add(@RequestBody PuntoVentaDTO dto) {
-        PuntoVenta saved = service.add(mapper.fromDTO(dto));
-        return mapper.toDTO(saved);
+    public PuntoVenta add(@RequestBody PuntoVenta pv) {
+        return service.add(pv);
     }
 
     @PutMapping

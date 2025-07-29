@@ -35,7 +35,7 @@ public class PuntoVentaServiceImpl implements PuntoVentaService {
     }
 
     public PuntoVenta add(PuntoVenta puntoVenta) {
-        return cache.put(puntoVenta.getId(), puntoVenta);
+    	return cache.put(puntoVenta.getId(), puntoVenta);
     }
 
     public PuntoVenta update(PuntoVenta puntoVenta) {
