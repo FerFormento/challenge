@@ -1,54 +1,49 @@
 classDiagram
     %% Entidades principales
-    class Client {
-        -Long id
-        -String name
-        -String email
+    class PuntoVenta {
+        -Integer id
+        -String nombre
         +getAccounts(): List~Account~
     }
 
-    class Account {
-        -Long id
-        -BigDecimal balance
-        -String currency
+    class Costo {
+        -Integer origen
+        -Integer destino
+        -int costo
         +deposit(amount: BigDecimal)
         +withdraw(amount: BigDecimal)
     }
 
-    class Transaction {
-        -Long id
-        -Account from
-        -Account to
-        -BigDecimal amount
-        -LocalDateTime timestamp
-        +execute()
+    class DijkstraResult {
+        -int costoTotal
+        -List~Integer~ camino
     }
 
     %% Servicios
-    class ClientService {
-        +createClient(Client): Client
-        +getClient(id: Long): Client
+    class CostoService {
+        +init(): void
+		+cargar(int a, int b, int costo): void
+		+remover(int a, int b): void
+		+vecinos(int id): Map<Integer, Integer>
+		+buscarMejorCamino(int origen, int destino): DijkstraResult
     }
 
-    class AccountService {
-        +createAccount(clientId: Long): Account
-        +transfer(fromId: Long, toId: Long, amount: BigDecimal): Transaction
-    }
-
-    class TransactionService {
-        +processTransaction(Transaction): void
+    class PuntoVentaService {
+        +init(): void
+		+getAll(): List<PuntoVenta>
+		+add(PuntoVenta puntoVenta): PuntoVenta
+		+update(PuntoVenta puntoVenta): PuntoVenta
+		+delete(int id): PuntoVenta
+		+get(int id): PuntoVenta
+		+exists(int id): boolean
     }
 
     %% Controladores
-    class ClientController
-    class AccountController
-    class TransactionController
+    class CostoController
+    class PuntoVentaController
 
     %% Relaciones
-    Client --> "1..*" Account : owns >
-    Account --> "*" Transaction : involved in >
-    Transaction --> Account : from/to
+    Costo --> PuntoVenta
 
-    ClientController --> ClientService
-    AccountController --> AccountService
-    TransactionController --> TransactionService
+    CostoController --> CostoService
+    PuntoVentaController --> PuntoVentaService
