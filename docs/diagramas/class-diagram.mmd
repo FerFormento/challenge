@@ -1,0 +1,54 @@
+classDiagram
+    %% Entidades principales
+    class Client {
+        -Long id
+        -String name
+        -String email
+        +getAccounts(): List~Account~
+    }
+
+    class Account {
+        -Long id
+        -BigDecimal balance
+        -String currency
+        +deposit(amount: BigDecimal)
+        +withdraw(amount: BigDecimal)
+    }
+
+    class Transaction {
+        -Long id
+        -Account from
+        -Account to
+        -BigDecimal amount
+        -LocalDateTime timestamp
+        +execute()
+    }
+
+    %% Servicios
+    class ClientService {
+        +createClient(Client): Client
+        +getClient(id: Long): Client
+    }
+
+    class AccountService {
+        +createAccount(clientId: Long): Account
+        +transfer(fromId: Long, toId: Long, amount: BigDecimal): Transaction
+    }
+
+    class TransactionService {
+        +processTransaction(Transaction): void
+    }
+
+    %% Controladores
+    class ClientController
+    class AccountController
+    class TransactionController
+
+    %% Relaciones
+    Client --> "1..*" Account : owns >
+    Account --> "*" Transaction : involved in >
+    Transaction --> Account : from/to
+
+    ClientController --> ClientService
+    AccountController --> AccountService
+    TransactionController --> TransactionService

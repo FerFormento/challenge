@@ -42,6 +42,7 @@ public class CostoServiceImpl implements CostoService {
     }
 
     public void remover(int a, int b) {
+    	//TODO Esto creo que deberia borrar la combinacion de A-B solamente
         Optional.ofNullable(grafo.get(a)).ifPresent(m -> m.remove(b));
         Optional.ofNullable(grafo.get(b)).ifPresent(m -> m.remove(a));
     }
