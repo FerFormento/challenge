@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "49b2a1b8-96d0-40f6-a9bb-6f71d9f9156b",
+		"name": "Challenge-PuntosVenta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17974253"
+	},
+	"item": [
+		{
+			"name": "agregar punto de venta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 11,\r\n  \"nombre\": \"Montevideo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/puntos-venta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"puntos-venta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todos los puntos de venta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/puntos-venta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"puntos-venta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar punto de venta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 11,\r\n  \"nombre\": \"Lima\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/puntos-venta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"puntos-venta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar punto de venta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/puntos-venta/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"puntos-venta",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

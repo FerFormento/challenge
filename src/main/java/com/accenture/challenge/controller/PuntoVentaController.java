@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.challenge.dto.PuntoVenta;
 import com.accenture.challenge.service.PuntoVentaService;
+import static com.accenture.challenge.constant.Constant.PUNTOS_DE_VENTA;
 
 @RestController
-@RequestMapping("/puntos-venta")
+@RequestMapping(PUNTOS_DE_VENTA)
 public class PuntoVentaController {
 
     @Autowired

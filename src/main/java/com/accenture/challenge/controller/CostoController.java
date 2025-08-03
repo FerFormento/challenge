@@ -19,9 +19,10 @@ import com.accenture.challenge.dto.DijkstraResult;
 import com.accenture.challenge.dto.PuntoVenta;
 import com.accenture.challenge.service.CostoService;
 import com.accenture.challenge.service.PuntoVentaService;
+import static com.accenture.challenge.constant.Constant.COSTOS;
 
 @RestController
-@RequestMapping("/costos")
+@RequestMapping(COSTOS)
 public class CostoController {
 
     @Autowired
