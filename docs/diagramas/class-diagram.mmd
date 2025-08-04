@@ -15,8 +15,15 @@ classDiagram
     }
 
     class DijkstraResult {
-        -int costoTotal
+        -BigDecimal importe
         -List~Integer~ camino
+    }
+
+    class Acreditacion {
+        -int costoTotal
+        -Integer puntoVentaId
+        -String puntoVentaNombre
+        -imestamp fechaRecepcion
     }
 
     %% Servicios
@@ -38,12 +45,20 @@ classDiagram
 		+exists(int id): boolean
     }
 
+    class AcreditacionService {
+        +cargarAcreditacion(AcreditacionDTO acreditacionDto): Acreditacion
+		+consultaAcreditacion(Long id): Acreditacion
+		+consultaTodasAcreditaciones(): List<Acreditacion>
+    }
+
     %% Controladores
     class CostoController
     class PuntoVentaController
+    class AcreditacionController
 
     %% Relaciones
     Costo --> PuntoVenta
 
     CostoController --> CostoService
     PuntoVentaController --> PuntoVentaService
+    AcreditacionController --> AcreditacionService
