@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: devdb
+    networks:
+      - app-network
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  microservicio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/devdb
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin123
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+networks:
+  app-network:
+    name: docker-challenge_app-network
+    driver: bridge
+    
+volumes:
+  pgdata:
