@@ -12,10 +12,10 @@ public class CostosTest {
 
 	@Test
 	void testCosto() {
-		Costo costo = new Costo(1,2,15);
+		var costo = new Costo(1,2,15);
 
-	    assertEquals(1, costo.getOrigen());
-	    assertEquals(2, costo.getDestino());
-	    assertEquals(15, costo.getCosto());
+	    assertEquals(1, costo.origen());
+	    assertEquals(2, costo.destino());
+	    assertEquals(15, costo.costo());
 	}
 }

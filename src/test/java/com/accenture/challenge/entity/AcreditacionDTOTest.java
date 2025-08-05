@@ -14,11 +14,9 @@ public class AcreditacionDTOTest {
 
 	@Test
 	void testAcreditacionDTO() {
-		AcreditacionDTO dto = new AcreditacionDTO();
-	    dto.setPuntoVenta(1);
-	    dto.setImporte(new BigDecimal(12));
+		var dto = new AcreditacionDTO(new BigDecimal(12),1);
 
-	    assertEquals(1, dto.getPuntoVenta());
-	    assertEquals(new BigDecimal(12), dto.getImporte());
+	    assertEquals(1, dto.puntoVenta());
+	    assertEquals(new BigDecimal(12), dto.importe());
 	}
 }

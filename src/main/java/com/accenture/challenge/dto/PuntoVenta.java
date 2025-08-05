@@ -1,20 +1,3 @@
 package com.accenture.challenge.dto;
 
-public class PuntoVenta {
-	private Integer id;
-    private String nombre;
-
-    public PuntoVenta(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-}
-
+public record PuntoVenta(Integer id, String nombre) {}

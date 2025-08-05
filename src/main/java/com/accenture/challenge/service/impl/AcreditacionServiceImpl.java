@@ -29,20 +29,20 @@ public class AcreditacionServiceImpl implements AcreditacionService{
 	
 	@Override
 	public Acreditacion cargarAcreditacion(AcreditacionDTO acreditacionDto) {
-		if (acreditacionDto.getImporte() == null || acreditacionDto.getImporte().compareTo(BigDecimal.ZERO) <= 0) {
+		if (acreditacionDto.importe() == null || acreditacionDto.importe().compareTo(BigDecimal.ZERO) <= 0) {
             throw new AcreditacionInvalidaException("Importe inválido");
         }
-        if (acreditacionDto.getPuntoVenta() == null) {
+        if (acreditacionDto.puntoVenta() == null) {
             throw new AcreditacionInvalidaException("Punto de venta obligatorio");
         }
 		
 		Acreditacion a = new Acreditacion();
-        a.setImporte(acreditacionDto.getImporte());
-        a.setPuntoVentaId(acreditacionDto.getPuntoVenta());
+        a.setImporte(acreditacionDto.importe());
+        a.setPuntoVentaId(acreditacionDto.puntoVenta());
         a.setFechaRecepcion(new Timestamp(System.currentTimeMillis()));
         
-        PuntoVenta puntoVenta = puntoVentaService.get(acreditacionDto.getPuntoVenta());
-        a.setPuntoVentaNombre(puntoVenta.getNombre());
+        PuntoVenta puntoVenta = puntoVentaService.get(acreditacionDto.puntoVenta());
+        a.setPuntoVentaNombre(puntoVenta.nombre());
         
         Acreditacion saved = acreditacionRepository.save(a);
         return saved;

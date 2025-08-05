@@ -56,8 +56,8 @@ public class CostoServiceTest {
 
 		var result = service.buscarMejorCamino(1, 4);
 		assertNotNull(result);
-		assertEquals(10, result.getCostoTotal());
-		assertEquals(List.of(1, 2, 4), result.getCamino());
+		assertEquals(10, result.costoTotal());
+		assertEquals(List.of(1, 2, 4), result.camino());
 	}
 
 }

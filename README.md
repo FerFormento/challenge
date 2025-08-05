@@ -3,7 +3,11 @@
 # Microservicio Java con PostgreSQL y SonarQube usando Podman
 
 Este proyecto es un microservicio Java (Spring Boot) que utiliza una base de datos **PostgreSQL** y administra puntos de venta y acreditaciones, todo ejecutado en contenedores usando **Podman**.
-La idea que se puede plantear para la resolucion de como obtener el camino mas corto entra dos puntos de venta. Utilice el patron Strategy implementando dos tipos de resolucion distintos. Uno es con A* y el otro es con Dijkstra. 
+La idea que se puede plantear para la resolucion de como obtener el camino mas corto entra dos puntos de venta. Utilice el patron Strategy implementando dos tipos de resolucion distintos. Uno es con A* y el otro es con Dijkstra.
+
+Con respecto a la utilizacion de las nueva utilidades de java hasta la version 17. Se han utilizado "var" en los tests y "record" en lso DTO para que el codigo sea mas legible. Tambien en java 17 se mejoro el soporte de uso de memoria y CPU dentro de contenedores que viene bien porque en este caso se utilizan con Podman.
+
+
 
 ## 🛠️ Tecnologías
 - Java 17
@@ -25,6 +29,14 @@ La idea que se puede plantear para la resolucion de como obtener el camino mas c
 
 ## Como probar endpoints
 - Se encuentran 3 collections de postamn en la carpeta docs/collection-postman. En cada collection se encuentra un request para probar cada endpoint de cada controller.
+
+## 📘 API Documentation
+La documentación de la API está disponible mediante Swagger UI.
+
+### 🔗 Acceso al Swagger
+Una vez que el microservicio está corriendo, podés acceder a la documentación desde:
+http://localhost:8080/swagger-ui.html
+
 
 ## Diagrama de clases
 - Se encuentra un archivo mermaid en la carpeta docs/diagramas.

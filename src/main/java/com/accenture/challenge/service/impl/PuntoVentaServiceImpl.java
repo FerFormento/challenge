@@ -26,7 +26,7 @@ public class PuntoVentaServiceImpl implements PuntoVentaService {
             new PuntoVenta(4, "Santa Fe"), new PuntoVenta(5, "Córdoba"), new PuntoVenta(6, "Misiones"),
             new PuntoVenta(7, "Salta"), new PuntoVenta(8, "Chubut"), new PuntoVenta(9, "Santa Cruz"),
             new PuntoVenta(10, "Catamarca")
-        ).forEach(pv -> cachePuntosVenta.put(pv.getId(), pv));
+        ).forEach(pv -> cachePuntosVenta.put(pv.id(), pv));
     }
 
     public List<PuntoVenta> getAll() {
@@ -34,11 +34,11 @@ public class PuntoVentaServiceImpl implements PuntoVentaService {
     }
 
     public PuntoVenta add(PuntoVenta puntoVenta) {
-    	return cachePuntosVenta.put(puntoVenta.getId(), puntoVenta);
+    	return cachePuntosVenta.put(puntoVenta.id(), puntoVenta);
     }
 
     public PuntoVenta update(PuntoVenta puntoVenta) {
-        return cachePuntosVenta.put(puntoVenta.getId(), puntoVenta);
+        return cachePuntosVenta.put(puntoVenta.id(), puntoVenta);
     }
 
     public PuntoVenta delete(int id) {

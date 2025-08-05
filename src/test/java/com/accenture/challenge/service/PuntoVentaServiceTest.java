@@ -41,7 +41,7 @@ public class PuntoVentaServiceTest {
  public void testUpdate() {
      PuntoVenta updated = new PuntoVenta(1, "Buenos Aires");
      service.update(updated);
-     assertEquals("Buenos Aires", service.get(1).getNombre());
+     assertEquals("Buenos Aires", service.get(1).nombre());
  }
 
  @Test

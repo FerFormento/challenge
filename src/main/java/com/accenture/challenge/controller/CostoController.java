@@ -45,7 +45,7 @@ public class CostoController {
     public Map<String, Integer> vecinos(@PathVariable int id) {
         Map<String, Integer> vecinos = new HashMap<>();
         costoService.vecinos(id).forEach((k, v) -> {
-            String nombre = Optional.ofNullable(puntoVentaService.get(k)).map(PuntoVenta::getNombre).orElse("Desconocido");
+            String nombre = Optional.ofNullable(puntoVentaService.get(k)).map(PuntoVenta::nombre).orElse("Desconocido");
             vecinos.put(nombre, v);
         });
         return vecinos;
@@ -57,11 +57,12 @@ public class CostoController {
         if (result == null) {
             return Map.of("mensaje", "No hay camino entre los puntos seleccionados");
         }
-        List<String> caminoConNombres = result.camino.stream()
-            .map(id -> Optional.ofNullable(puntoVentaService.get(id)).map(PuntoVenta::getNombre).orElse("Desconocido"))
+        List<Integer> camino = result.camino();
+        List<String> caminoConNombres = camino.stream()
+            .map(id -> Optional.ofNullable(puntoVentaService.get(id)).map(PuntoVenta::nombre).orElse("Desconocido"))
             .collect(Collectors.toList());
         return Map.of(
-            "costo", result.costoTotal,
+            "costo", result.costoTotal(),
             "camino", caminoConNombres
         );
     }

@@ -2,7 +2,6 @@ package com.accenture.challenge.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +17,9 @@ public class DijkstraResultTest {
 	void testDijkstraResult() {
 		List<Integer> camino = new ArrayList<Integer>();
 		camino.add(1);
-		DijkstraResult dijkstraResult = new DijkstraResult(12, camino);
+		var dijkstraResult = new DijkstraResult(12, camino);
 
-	    assertEquals(1, dijkstraResult.getCamino().get(0));
-	    assertEquals(12, dijkstraResult.getCostoTotal());
+	    assertEquals(1, dijkstraResult.camino().get(0));
+	    assertEquals(12, dijkstraResult.costoTotal());
 	}
 }

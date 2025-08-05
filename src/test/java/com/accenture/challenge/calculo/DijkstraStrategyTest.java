@@ -31,8 +31,8 @@ class DijkstraStrategyTest {
         DijkstraResult result = strategy.calcularCaminoMinimo(1, 3, grafo);
 
         assertNotNull(result);
-        assertEquals(15, result.getCostoTotal());
-        assertEquals(List.of(1, 2, 3), result.getCamino());
+        assertEquals(15, result.costoTotal());
+        assertEquals(List.of(1, 2, 3), result.camino());
     }
 
     @Test

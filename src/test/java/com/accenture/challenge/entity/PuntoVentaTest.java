@@ -12,9 +12,9 @@ public class PuntoVentaTest {
 
 	@Test
 	void testPuntoVenta() {
-		PuntoVenta puntoVenta = new PuntoVenta(11, "Jujuy");
+		var puntoVenta = new PuntoVenta(11, "Jujuy");
 
-	    assertEquals(11, puntoVenta.getId());
-	    assertEquals("Jujuy", puntoVenta.getNombre());
+	    assertEquals(11, puntoVenta.id());
+	    assertEquals("Jujuy", puntoVenta.nombre());
 	}
 }

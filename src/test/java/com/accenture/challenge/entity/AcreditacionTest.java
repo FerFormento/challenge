@@ -13,7 +13,7 @@ public class AcreditacionTest {
 	
 	@Test
 	void testGettersSetters() {
-	    Acreditacion a = new Acreditacion();
+	    var a = new Acreditacion();
 	    a.setId(1L);
 	    a.setImporte(BigDecimal.TEN);
 	    a.setPuntoVentaId(5);
