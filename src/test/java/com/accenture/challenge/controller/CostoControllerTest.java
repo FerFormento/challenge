@@ -14,6 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.accenture.challenge.constant.MetodoBusquedaEnum;
 import com.accenture.challenge.dto.DijkstraResult;
 import com.accenture.challenge.dto.PuntoVenta;
 import com.accenture.challenge.service.CostoService;
@@ -43,14 +44,14 @@ public class CostoControllerTest {
 
  @Test
  public void testCaminoMinimo() throws Exception {
-     when(costoService.buscarMejorCamino(1, 4)).thenReturn(
+     when(costoService.buscarMejorCamino(1, 4, MetodoBusquedaEnum.DIJKSTRA)).thenReturn(
          new DijkstraResult(10, List.of(1, 2, 4))
      );
      when(pvService.get(1)).thenReturn(new PuntoVenta(1, "CABA"));
      when(pvService.get(2)).thenReturn(new PuntoVenta(2, "GBA_1"));
      when(pvService.get(4)).thenReturn(new PuntoVenta(4, "Santa Fe"));
 
-     mockMvc.perform(get("/costos/camino-minimo?origen=1&destino=4"))
+     mockMvc.perform(get("/costos/camino-minimo?origen=1&destino=4&metodo=DIJKSTRA"))
              .andExpect(status().isOk())
              .andExpect(jsonPath("$.costo").value(10))
              .andExpect(jsonPath("$.camino[0]").value("CABA"))

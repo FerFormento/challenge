@@ -95,7 +95,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/costos/camino-minimo?origen=1&destino=5",
+					"raw": "http://localhost:8080/costos/camino-minimo?origen=1&destino=5&metodo=A_STAR",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -113,6 +113,10 @@
 						{
 							"key": "destino",
 							"value": "5"
+						},
+						{
+							"key": "metodo",
+							"value": "A_STAR"
 						}
 					]
 				}

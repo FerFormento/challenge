@@ -7,9 +7,12 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.accenture.challenge.calculo.CalculoMejorCaminoStrategy;
+import com.accenture.challenge.calculo.AStarStrategy;
+import com.accenture.challenge.calculo.DijkstraStrategy;
+import com.accenture.challenge.constant.MetodoBusquedaEnum;
 import com.accenture.challenge.dto.DijkstraResult;
 import com.accenture.challenge.service.CostoService;
 
@@ -20,11 +23,14 @@ public class CostoServiceImpl implements CostoService {
 
 	private final Map<Integer, Map<Integer, Integer>> cacheCostos = new ConcurrentHashMap<>();
 	
-	private final CalculoMejorCaminoStrategy calculoMejorCaminoStrategy;
+	private final DijkstraStrategy dijkstraStrategy;
+	private final AStarStrategy aStarStrategy;
 	
 	@Autowired
-	public CostoServiceImpl(CalculoMejorCaminoStrategy calculoMejorCaminoStrategy) {
-		this.calculoMejorCaminoStrategy = calculoMejorCaminoStrategy;
+	public CostoServiceImpl(@Qualifier("dijkstra") DijkstraStrategy dijkstraStrategy, 
+			@Qualifier("astar") AStarStrategy aStarStrategy) {
+		this.dijkstraStrategy = dijkstraStrategy;
+		this.aStarStrategy = aStarStrategy;
 	}
 
     @PostConstruct
@@ -49,8 +55,12 @@ public class CostoServiceImpl implements CostoService {
         return cacheCostos.getOrDefault(id, Collections.emptyMap());
     }
 
-    public DijkstraResult buscarMejorCamino(int origen, int destino) {
-    	return calculoMejorCaminoStrategy.calcularCaminoMinimo(origen, destino, cacheCostos);
+    public DijkstraResult buscarMejorCamino(int origen, int destino, MetodoBusquedaEnum metodo) {
+    	DijkstraResult dijkstraResult = switch (metodo) {
+	        case A_STAR -> aStarStrategy.calcularCaminoMinimo(origen, destino, cacheCostos);
+	        case DIJKSTRA -> dijkstraStrategy.calcularCaminoMinimo(origen, destino, cacheCostos);
+    	};
+    	return dijkstraResult;
     }
     
 }

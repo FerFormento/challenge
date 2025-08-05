@@ -1,5 +1,7 @@
 package com.accenture.challenge.controller;
 
+import static com.accenture.challenge.constant.Constant.COSTOS;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.challenge.constant.MetodoBusquedaEnum;
 import com.accenture.challenge.dto.DijkstraResult;
 import com.accenture.challenge.dto.PuntoVenta;
 import com.accenture.challenge.service.CostoService;
 import com.accenture.challenge.service.PuntoVentaService;
-import static com.accenture.challenge.constant.Constant.COSTOS;
 
 @RestController
 @RequestMapping(COSTOS)
@@ -52,8 +54,8 @@ public class CostoController {
     }
 
     @GetMapping("/camino-minimo")
-    public Map<String, Object> caminoMinimo(@RequestParam int origen, @RequestParam int destino) {
-        DijkstraResult result = costoService.buscarMejorCamino(origen, destino);
+    public Map<String, Object> caminoMinimo(@RequestParam int origen, @RequestParam int destino, @RequestParam MetodoBusquedaEnum metodo) {
+        DijkstraResult result = costoService.buscarMejorCamino(origen, destino, metodo);
         if (result == null) {
             return Map.of("mensaje", "No hay camino entre los puntos seleccionados");
         }

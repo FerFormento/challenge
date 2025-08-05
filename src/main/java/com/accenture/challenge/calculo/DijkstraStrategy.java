@@ -10,11 +10,13 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.accenture.challenge.dto.DijkstraResult;
 
 @Component
+@Qualifier("dijkstra")
 public class DijkstraStrategy implements CalculoMejorCaminoStrategy{
 
 	@Override

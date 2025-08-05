@@ -16,7 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.accenture.challenge.calculo.CalculoMejorCaminoStrategy;
+import com.accenture.challenge.calculo.AStarStrategy;
+import com.accenture.challenge.calculo.DijkstraStrategy;
+import com.accenture.challenge.constant.MetodoBusquedaEnum;
 import com.accenture.challenge.dto.DijkstraResult;
 import com.accenture.challenge.service.impl.CostoServiceImpl;
 
@@ -24,13 +26,15 @@ import com.accenture.challenge.service.impl.CostoServiceImpl;
 public class CostoServiceTest {
 
 	@Mock
-	private CalculoMejorCaminoStrategy calculoMejorCaminoStrategy;
+	private DijkstraStrategy dijkstraStrategy;
+	@Mock
+	private AStarStrategy aStarStrategy;
 
 	private CostoService service;
 
 	@BeforeEach
 	public void setUp() {
-		service = new CostoServiceImpl(calculoMejorCaminoStrategy);
+		service = new CostoServiceImpl(dijkstraStrategy, aStarStrategy);
 		service.init();
 	}
 
@@ -52,9 +56,9 @@ public class CostoServiceTest {
 	@Test
 	public void testCaminoMinimoSimple() {
 		DijkstraResult resultadoSimulado = new DijkstraResult(10, List.of(1, 2, 4));
-		when(calculoMejorCaminoStrategy.calcularCaminoMinimo(eq(1), eq(4), anyMap())).thenReturn(resultadoSimulado);
+		when(dijkstraStrategy.calcularCaminoMinimo(eq(1), eq(4), anyMap())).thenReturn(resultadoSimulado);
 
-		var result = service.buscarMejorCamino(1, 4);
+		var result = service.buscarMejorCamino(1, 4, MetodoBusquedaEnum.DIJKSTRA);
 		assertNotNull(result);
 		assertEquals(10, result.costoTotal());
 		assertEquals(List.of(1, 2, 4), result.camino());
