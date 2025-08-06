@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.service.PuntoVentaService;
 
 import jakarta.annotation.PostConstruct;
@@ -17,35 +17,35 @@ import org.springframework.stereotype.Service;
 @CacheConfig(cacheNames = "puntosVenta")
 public class PuntoVentaServiceImpl implements PuntoVentaService {
 
-	private final Map<Integer, PuntoVenta> cachePuntosVenta = new ConcurrentHashMap<>();
+	private final Map<Integer, PuntoVentaDto> cachePuntosVenta = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void init() {
         List.of(
-            new PuntoVenta(1, "CABA"), new PuntoVenta(2, "GBA_1"), new PuntoVenta(3, "GBA_2"),
-            new PuntoVenta(4, "Santa Fe"), new PuntoVenta(5, "Córdoba"), new PuntoVenta(6, "Misiones"),
-            new PuntoVenta(7, "Salta"), new PuntoVenta(8, "Chubut"), new PuntoVenta(9, "Santa Cruz"),
-            new PuntoVenta(10, "Catamarca")
+            new PuntoVentaDto(1, "CABA"), new PuntoVentaDto(2, "GBA_1"), new PuntoVentaDto(3, "GBA_2"),
+            new PuntoVentaDto(4, "Santa Fe"), new PuntoVentaDto(5, "Córdoba"), new PuntoVentaDto(6, "Misiones"),
+            new PuntoVentaDto(7, "Salta"), new PuntoVentaDto(8, "Chubut"), new PuntoVentaDto(9, "Santa Cruz"),
+            new PuntoVentaDto(10, "Catamarca")
         ).forEach(pv -> cachePuntosVenta.put(pv.id(), pv));
     }
 
-    public List<PuntoVenta> getAll() {
+    public List<PuntoVentaDto> getAll() {
         return new ArrayList<>(cachePuntosVenta.values());
     }
 
-    public PuntoVenta add(PuntoVenta puntoVenta) {
+    public PuntoVentaDto add(PuntoVentaDto puntoVenta) {
     	return cachePuntosVenta.put(puntoVenta.id(), puntoVenta);
     }
 
-    public PuntoVenta update(PuntoVenta puntoVenta) {
+    public PuntoVentaDto update(PuntoVentaDto puntoVenta) {
         return cachePuntosVenta.put(puntoVenta.id(), puntoVenta);
     }
 
-    public PuntoVenta delete(int id) {
+    public PuntoVentaDto delete(int id) {
         return cachePuntosVenta.remove(id);
     }
 
-    public PuntoVenta get(int id) {
+    public PuntoVentaDto get(int id) {
         return cachePuntosVenta.get(id);
     }
 

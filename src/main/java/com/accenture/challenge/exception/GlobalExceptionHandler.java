@@ -7,15 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.accenture.challenge.dto.ErrorResponse;
+import com.accenture.challenge.dto.ErrorResponseDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(AcreditacionNoEncontradaException.class)
-    public ResponseEntity<ErrorResponse> handleNotFound(AcreditacionNoEncontradaException ex, HttpServletRequest req) {
-        ErrorResponse err = new ErrorResponse(
+    public ResponseEntity<ErrorResponseDto> handleNotFound(AcreditacionNoEncontradaException ex, HttpServletRequest req) {
+        ErrorResponseDto err = new ErrorResponseDto(
             HttpStatus.NOT_FOUND.value(),
             "acreditacion_not_found",
             ex.getMessage(),
@@ -26,8 +26,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AcreditacionInvalidaException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidInput(AcreditacionInvalidaException ex, HttpServletRequest req) {
-        ErrorResponse err = new ErrorResponse(
+    public ResponseEntity<ErrorResponseDto> handleInvalidInput(AcreditacionInvalidaException ex, HttpServletRequest req) {
+        ErrorResponseDto err = new ErrorResponseDto(
             HttpStatus.BAD_REQUEST.value(),
             "invalid_input",
             ex.getMessage(),
@@ -38,8 +38,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleAll(Exception ex, HttpServletRequest req) {
-        ErrorResponse err = new ErrorResponse(
+    public ResponseEntity<ErrorResponseDto> handleAll(Exception ex, HttpServletRequest req) {
+        ErrorResponseDto err = new ErrorResponseDto(
             HttpStatus.INTERNAL_SERVER_ERROR.value(),
             "internal_error",
             "Error inesperado",

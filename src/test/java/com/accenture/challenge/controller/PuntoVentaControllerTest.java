@@ -17,7 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.service.PuntoVentaService;
 
 @WebMvcTest(PuntoVentaController.class)
@@ -31,7 +31,7 @@ public class PuntoVentaControllerTest {
 
  @Test
  public void testGetAll() throws Exception {
-     List<PuntoVenta> mockList = List.of(new PuntoVenta(1, "CABA"));
+     List<PuntoVentaDto> mockList = List.of(new PuntoVentaDto(1, "CABA"));
      when(service.getAll()).thenReturn(mockList);
 
      mockMvc.perform(get("/puntos-venta"))
@@ -40,7 +40,7 @@ public class PuntoVentaControllerTest {
 
  @Test
  public void testAdd() throws Exception {
-     PuntoVenta pv = new PuntoVenta(20, "Tucumán");
+     PuntoVentaDto pv = new PuntoVentaDto(20, "Tucumán");
      when(service.add(any())).thenReturn(pv);
 
      mockMvc.perform(post("/puntos-venta")
@@ -52,7 +52,7 @@ public class PuntoVentaControllerTest {
 
  @Test
  public void testDelete() throws Exception {
-     PuntoVenta pv = new PuntoVenta(1, "CABA");
+     PuntoVentaDto pv = new PuntoVentaDto(1, "CABA");
      when(service.delete(1)).thenReturn(pv);
 
      mockMvc.perform(delete("/puntos-venta/1"))

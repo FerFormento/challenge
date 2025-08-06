@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.service.impl.PuntoVentaServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,20 +26,20 @@ public class PuntoVentaServiceTest {
 
  @Test
  public void testGetAll() {
-     List<PuntoVenta> puntos = service.getAll();
+     List<PuntoVentaDto> puntos = service.getAll();
      assertEquals(10, puntos.size());
  }
 
  @Test
  public void testAddAndGet() {
-     PuntoVenta pv = new PuntoVenta(20, "Neuquén");
+     PuntoVentaDto pv = new PuntoVentaDto(20, "Neuquén");
      service.add(pv);
      assertEquals(pv, service.get(20));
  }
 
  @Test
  public void testUpdate() {
-     PuntoVenta updated = new PuntoVenta(1, "Buenos Aires");
+     PuntoVentaDto updated = new PuntoVentaDto(1, "Buenos Aires");
      service.update(updated);
      assertEquals("Buenos Aires", service.get(1).nombre());
  }

@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.accenture.challenge.dto.DijkstraResult;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
 
 @SpringBootTest
 public class DijkstraResultTest {
@@ -17,7 +17,7 @@ public class DijkstraResultTest {
 	void testDijkstraResult() {
 		List<Integer> camino = new ArrayList<Integer>();
 		camino.add(1);
-		var dijkstraResult = new DijkstraResult(12, camino);
+		var dijkstraResult = new ResultadoMejorCaminoDto(12, camino);
 
 	    assertEquals(1, dijkstraResult.camino().get(0));
 	    assertEquals(12, dijkstraResult.costoTotal());

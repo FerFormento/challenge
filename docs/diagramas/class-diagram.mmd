@@ -1,20 +1,17 @@
 classDiagram
     %% Entidades principales
-    class PuntoVenta {
+    class PuntoVentaDto {
         -Integer id
         -String nombre
-        +getAccounts(): List~Account~
     }
 
-    class Costo {
+    class CostoDto {
         -Integer origen
         -Integer destino
         -int costo
-        +deposit(amount: BigDecimal)
-        +withdraw(amount: BigDecimal)
     }
 
-    class DijkstraResult {
+    class ResultadoMejorCaminoDto {
         -BigDecimal importe
         -List~Integer~ camino
     }
@@ -23,7 +20,7 @@ classDiagram
         -int costoTotal
         -Integer puntoVentaId
         -String puntoVentaNombre
-        -imestamp fechaRecepcion
+        -Timestamp fechaRecepcion
     }
 
     %% Servicios
@@ -32,16 +29,16 @@ classDiagram
 		+cargar(int a, int b, int costo): void
 		+remover(int a, int b): void
 		+vecinos(int id): Map<Integer, Integer>
-		+buscarMejorCamino(int origen, int destino): DijkstraResult
+		+buscarMejorCamino(int origen, int destino): ResultadoMejorCaminoDto
     }
 
     class PuntoVentaService {
         +init(): void
-		+getAll(): List<PuntoVenta>
-		+add(PuntoVenta puntoVenta): PuntoVenta
-		+update(PuntoVenta puntoVenta): PuntoVenta
-		+delete(int id): PuntoVenta
-		+get(int id): PuntoVenta
+		+getAll(): List<PuntoVentaDto>
+		+add(PuntoVentaDto puntoVenta): PuntoVentaDto
+		+update(PuntoVentaDto puntoVenta): PuntoVentaDto
+		+delete(int id): PuntoVentaDto
+		+get(int id): PuntoVentaDto
 		+exists(int id): boolean
     }
 
@@ -57,7 +54,7 @@ classDiagram
     class AcreditacionController
 
     %% Relaciones
-    Costo --> PuntoVenta
+    CostoDto --> PuntoVentaDto
 
     CostoController --> CostoService
     PuntoVentaController --> PuntoVentaService

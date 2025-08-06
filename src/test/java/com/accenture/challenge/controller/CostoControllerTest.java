@@ -15,8 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.accenture.challenge.constant.MetodoBusquedaEnum;
-import com.accenture.challenge.dto.DijkstraResult;
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.service.CostoService;
 import com.accenture.challenge.service.PuntoVentaService;
 
@@ -35,7 +35,7 @@ public class CostoControllerTest {
  @Test
  public void testVecinos() throws Exception {
      when(costoService.vecinos(1)).thenReturn(Map.of(2, 5));
-     when(pvService.get(2)).thenReturn(new PuntoVenta(2, "GBA_1"));
+     when(pvService.get(2)).thenReturn(new PuntoVentaDto(2, "GBA_1"));
 
      mockMvc.perform(get("/costos/vecinos/1"))
              .andExpect(status().isOk())
@@ -45,11 +45,11 @@ public class CostoControllerTest {
  @Test
  public void testCaminoMinimo() throws Exception {
      when(costoService.buscarMejorCamino(1, 4, MetodoBusquedaEnum.DIJKSTRA)).thenReturn(
-         new DijkstraResult(10, List.of(1, 2, 4))
+         new ResultadoMejorCaminoDto(10, List.of(1, 2, 4))
      );
-     when(pvService.get(1)).thenReturn(new PuntoVenta(1, "CABA"));
-     when(pvService.get(2)).thenReturn(new PuntoVenta(2, "GBA_1"));
-     when(pvService.get(4)).thenReturn(new PuntoVenta(4, "Santa Fe"));
+     when(pvService.get(1)).thenReturn(new PuntoVentaDto(1, "CABA"));
+     when(pvService.get(2)).thenReturn(new PuntoVentaDto(2, "GBA_1"));
+     when(pvService.get(4)).thenReturn(new PuntoVentaDto(4, "Santa Fe"));
 
      mockMvc.perform(get("/costos/camino-minimo?origen=1&destino=4&metodo=DIJKSTRA"))
              .andExpect(status().isOk())

@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.accenture.challenge.dto.AcreditacionDTO;
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.AcreditacionDto;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.entity.Acreditacion;
 import com.accenture.challenge.exception.AcreditacionInvalidaException;
 import com.accenture.challenge.exception.AcreditacionNoEncontradaException;
@@ -28,7 +28,7 @@ public class AcreditacionServiceImpl implements AcreditacionService{
 	}
 	
 	@Override
-	public Acreditacion cargarAcreditacion(AcreditacionDTO acreditacionDto) {
+	public Acreditacion cargarAcreditacion(AcreditacionDto acreditacionDto) {
 		if (acreditacionDto.importe() == null || acreditacionDto.importe().compareTo(BigDecimal.ZERO) <= 0) {
             throw new AcreditacionInvalidaException("Importe inválido");
         }
@@ -41,7 +41,7 @@ public class AcreditacionServiceImpl implements AcreditacionService{
         a.setPuntoVentaId(acreditacionDto.puntoVenta());
         a.setFechaRecepcion(new Timestamp(System.currentTimeMillis()));
         
-        PuntoVenta puntoVenta = puntoVentaService.get(acreditacionDto.puntoVenta());
+        PuntoVentaDto puntoVenta = puntoVentaService.get(acreditacionDto.puntoVenta());
         a.setPuntoVentaNombre(puntoVenta.nombre());
         
         Acreditacion saved = acreditacionRepository.save(a);

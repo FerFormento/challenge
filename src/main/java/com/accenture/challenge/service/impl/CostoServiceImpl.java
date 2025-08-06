@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.accenture.challenge.calculo.AStarStrategy;
 import com.accenture.challenge.calculo.DijkstraStrategy;
 import com.accenture.challenge.constant.MetodoBusquedaEnum;
-import com.accenture.challenge.dto.DijkstraResult;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
 import com.accenture.challenge.service.CostoService;
 
 import jakarta.annotation.PostConstruct;
@@ -55,8 +55,8 @@ public class CostoServiceImpl implements CostoService {
         return cacheCostos.getOrDefault(id, Collections.emptyMap());
     }
 
-    public DijkstraResult buscarMejorCamino(int origen, int destino, MetodoBusquedaEnum metodo) {
-    	DijkstraResult dijkstraResult = switch (metodo) {
+    public ResultadoMejorCaminoDto buscarMejorCamino(int origen, int destino, MetodoBusquedaEnum metodo) {
+    	ResultadoMejorCaminoDto dijkstraResult = switch (metodo) {
 	        case A_STAR -> aStarStrategy.calcularCaminoMinimo(origen, destino, cacheCostos);
 	        case DIJKSTRA -> dijkstraStrategy.calcularCaminoMinimo(origen, destino, cacheCostos);
     	};

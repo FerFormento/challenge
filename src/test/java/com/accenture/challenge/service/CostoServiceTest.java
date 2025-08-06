@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.accenture.challenge.calculo.AStarStrategy;
 import com.accenture.challenge.calculo.DijkstraStrategy;
 import com.accenture.challenge.constant.MetodoBusquedaEnum;
-import com.accenture.challenge.dto.DijkstraResult;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
 import com.accenture.challenge.service.impl.CostoServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -55,7 +55,7 @@ public class CostoServiceTest {
 
 	@Test
 	public void testCaminoMinimoSimple() {
-		DijkstraResult resultadoSimulado = new DijkstraResult(10, List.of(1, 2, 4));
+		ResultadoMejorCaminoDto resultadoSimulado = new ResultadoMejorCaminoDto(10, List.of(1, 2, 4));
 		when(dijkstraStrategy.calcularCaminoMinimo(eq(1), eq(4), anyMap())).thenReturn(resultadoSimulado);
 
 		var result = service.buscarMejorCamino(1, 4, MetodoBusquedaEnum.DIJKSTRA);

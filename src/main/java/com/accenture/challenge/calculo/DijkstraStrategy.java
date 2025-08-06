@@ -13,14 +13,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.accenture.challenge.dto.DijkstraResult;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
 
 @Component
 @Qualifier("dijkstra")
 public class DijkstraStrategy implements CalculoMejorCaminoStrategy{
 
 	@Override
-	public DijkstraResult calcularCaminoMinimo(int origen, int destino, Map<Integer, Map<Integer, Integer>> grafo) {
+	public ResultadoMejorCaminoDto calcularCaminoMinimo(int origen, int destino, Map<Integer, Map<Integer, Integer>> grafo) {
 		Map<Integer, Integer> dist = new HashMap<>();
         Map<Integer, Integer> prev = new HashMap<>();
         Set<Integer> visitados = new HashSet<>();
@@ -56,7 +56,7 @@ public class DijkstraStrategy implements CalculoMejorCaminoStrategy{
             camino.add(0, at);
         }
 
-        return new DijkstraResult(dist.get(destino), camino);
+        return new ResultadoMejorCaminoDto(dist.get(destino), camino);
 	}
 	
 	public Map<Integer, Integer> vecinos(int id, Map<Integer, Map<Integer, Integer>> grafo) {

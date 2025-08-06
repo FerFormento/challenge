@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.challenge.constant.MetodoBusquedaEnum;
-import com.accenture.challenge.dto.DijkstraResult;
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.service.CostoService;
 import com.accenture.challenge.service.PuntoVentaService;
 
@@ -47,7 +47,7 @@ public class CostoController {
     public Map<String, Integer> vecinos(@PathVariable int id) {
         Map<String, Integer> vecinos = new HashMap<>();
         costoService.vecinos(id).forEach((k, v) -> {
-            String nombre = Optional.ofNullable(puntoVentaService.get(k)).map(PuntoVenta::nombre).orElse("Desconocido");
+            String nombre = Optional.ofNullable(puntoVentaService.get(k)).map(PuntoVentaDto::nombre).orElse("Desconocido");
             vecinos.put(nombre, v);
         });
         return vecinos;
@@ -55,13 +55,13 @@ public class CostoController {
 
     @GetMapping("/camino-minimo")
     public Map<String, Object> caminoMinimo(@RequestParam int origen, @RequestParam int destino, @RequestParam MetodoBusquedaEnum metodo) {
-        DijkstraResult result = costoService.buscarMejorCamino(origen, destino, metodo);
+        ResultadoMejorCaminoDto result = costoService.buscarMejorCamino(origen, destino, metodo);
         if (result == null) {
             return Map.of("mensaje", "No hay camino entre los puntos seleccionados");
         }
         List<Integer> camino = result.camino();
         List<String> caminoConNombres = camino.stream()
-            .map(id -> Optional.ofNullable(puntoVentaService.get(id)).map(PuntoVenta::nombre).orElse("Desconocido"))
+            .map(id -> Optional.ofNullable(puntoVentaService.get(id)).map(PuntoVentaDto::nombre).orElse("Desconocido"))
             .collect(Collectors.toList());
         return Map.of(
             "costo", result.costoTotal(),

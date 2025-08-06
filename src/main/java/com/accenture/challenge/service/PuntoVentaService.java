@@ -2,22 +2,22 @@ package com.accenture.challenge.service;
 
 import java.util.List;
 
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.PuntoVentaDto;
 
 
 public interface PuntoVentaService {
 
 	void init();
 
-    List<PuntoVenta> getAll();
+    List<PuntoVentaDto> getAll();
 
-    PuntoVenta add(PuntoVenta puntoVenta);
+    PuntoVentaDto add(PuntoVentaDto puntoVenta);
 
-    PuntoVenta update(PuntoVenta puntoVenta);
+    PuntoVentaDto update(PuntoVentaDto puntoVenta);
 
-    PuntoVenta delete(int id);
+    PuntoVentaDto delete(int id);
 
-    PuntoVenta get(int id);
+    PuntoVentaDto get(int id);
 
     boolean exists(int id);
 }

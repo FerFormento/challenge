@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ChallengeApplicationTests {
     @Test
     void contextLoads() {
-        // Verifica que el contexto de Spring arranca sin errores
     }
 
     @Test

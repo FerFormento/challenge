@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.http.ResponseEntity;
 
-import com.accenture.challenge.dto.ErrorResponse;
+import com.accenture.challenge.dto.ErrorResponseDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -34,7 +34,7 @@ class GlobalExceptionHandlerTest {
         AcreditacionNoEncontradaException ex =
                 new AcreditacionNoEncontradaException(1l);
 
-        ResponseEntity<ErrorResponse> response =
+        ResponseEntity<ErrorResponseDto> response =
                 handler.handleNotFound(ex, request);
 
         assertEquals(404, response.getStatusCodeValue());
@@ -49,7 +49,7 @@ class GlobalExceptionHandlerTest {
         AcreditacionInvalidaException ex =
                 new AcreditacionInvalidaException("Datos inválidos");
 
-        ResponseEntity<ErrorResponse> response =
+        ResponseEntity<ErrorResponseDto> response =
                 handler.handleInvalidInput(ex, request);
 
         assertEquals(400, response.getStatusCodeValue());
@@ -63,7 +63,7 @@ class GlobalExceptionHandlerTest {
     void handleAll_ShouldReturnInternalServerErrorResponse() {
         Exception ex = new Exception("Error genérico");
 
-        ResponseEntity<ErrorResponse> response =
+        ResponseEntity<ErrorResponseDto> response =
                 handler.handleAll(ex, request);
 
         assertEquals(500, response.getStatusCodeValue());

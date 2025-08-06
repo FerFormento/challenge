@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.challenge.dto.PuntoVenta;
+import com.accenture.challenge.dto.PuntoVentaDto;
 import com.accenture.challenge.service.PuntoVentaService;
 import static com.accenture.challenge.constant.Constant.PUNTOS_DE_VENTA;
 
@@ -24,22 +24,22 @@ public class PuntoVentaController {
     private PuntoVentaService service;
     
     @GetMapping
-    public List<PuntoVenta> getAll() {
+    public List<PuntoVentaDto> getAll() {
         return service.getAll();
     }
 
     @PostMapping
-    public PuntoVenta add(@RequestBody PuntoVenta pv) {
+    public PuntoVentaDto add(@RequestBody PuntoVentaDto pv) {
         return service.add(pv);
     }
 
     @PutMapping
-    public PuntoVenta update(@RequestBody PuntoVenta pv) {
+    public PuntoVentaDto update(@RequestBody PuntoVentaDto pv) {
         return service.update(pv);
     }
 
     @DeleteMapping("/{id}")
-    public PuntoVenta delete(@PathVariable int id) {
+    public PuntoVentaDto delete(@PathVariable int id) {
         return service.delete(id);
     }
 }

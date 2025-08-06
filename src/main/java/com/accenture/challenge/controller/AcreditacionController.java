@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.challenge.dto.AcreditacionDTO;
+import com.accenture.challenge.dto.AcreditacionDto;
 import com.accenture.challenge.entity.Acreditacion;
 import com.accenture.challenge.service.AcreditacionService;
 import static com.accenture.challenge.constant.Constant.ACREDITARCIONES;
@@ -24,7 +24,7 @@ public class AcreditacionController {
     private AcreditacionService acreditacionService;
 
     @PostMapping
-    public ResponseEntity<Acreditacion> agregarAcreditacion(@RequestBody AcreditacionDTO acreditacionDto) {
+    public ResponseEntity<Acreditacion> agregarAcreditacion(@RequestBody AcreditacionDto acreditacionDto) {
     	Acreditacion acreditacion = acreditacionService.cargarAcreditacion(acreditacionDto);
         return ResponseEntity.ok(acreditacion);
     }

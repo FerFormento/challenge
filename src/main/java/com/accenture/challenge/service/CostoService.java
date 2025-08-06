@@ -3,7 +3,7 @@ package com.accenture.challenge.service;
 import java.util.Map;
 
 import com.accenture.challenge.constant.MetodoBusquedaEnum;
-import com.accenture.challenge.dto.DijkstraResult;
+import com.accenture.challenge.dto.ResultadoMejorCaminoDto;
 
 public interface CostoService {
 
@@ -15,5 +15,5 @@ public interface CostoService {
 
     Map<Integer, Integer> vecinos(int id);
 
-    DijkstraResult buscarMejorCamino(int origen, int destino, MetodoBusquedaEnum metodo);
+    ResultadoMejorCaminoDto buscarMejorCamino(int origen, int destino, MetodoBusquedaEnum metodo);
 }
