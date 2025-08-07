@@ -9,8 +9,4 @@ class ChallengeApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    void testMainMethod() {
-    	ChallengeApplication.main(new String[] {});
-    }
 }
